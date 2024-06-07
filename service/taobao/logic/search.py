@@ -11,7 +11,7 @@ def request_search(keyword: str, cookie: str, page: int = 1) -> tuple[dict, bool
     ret = []
     query = pack_search_query(cookie, keyword, page)
     url = f'{SEARCH_URL}{query}'
-    headers = {'cookie': cookie}  # 未使用proxies
+    headers = {'cookie': cookie}
     headers.update(COMMON_HEADERS)
     try:
         logger.info(f'url: {url}')

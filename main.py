@@ -2,7 +2,8 @@ from flask import Flask
 from service.douyin.urls import douyin
 from service.kuaishou.urls import kuaishou
 from service.bilibili.urls  import bilibili
-from service.taobao.urls  import taobao
+from service.taobao.urls import taobao
+from service.jd.urls import jd
 from lib.logger import logger
 import yaml
 
@@ -11,6 +12,7 @@ app.register_blueprint(douyin, url_prefix="/douyin")
 app.register_blueprint(kuaishou, url_prefix="/kuaishou")
 app.register_blueprint(bilibili, url_prefix="/bilibili")
 app.register_blueprint(taobao, url_prefix="/taobao")
+app.register_blueprint(jd, url_prefix="/jd")
 
 def init_service():
     config_file = "config/config.yaml"

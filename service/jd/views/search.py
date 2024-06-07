@@ -8,7 +8,7 @@ import random
 
 def search():
     """
-    搜索淘宝商品
+    搜索京东商品
     """
     keyword = request.args.get('keyword', '')
     page = int(request.args.get('page', 1))
