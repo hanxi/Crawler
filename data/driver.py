@@ -7,7 +7,7 @@ class SqliteStore:
         self._connection_pool = QueuePool(self._connect, max_overflow=0, pool_size=pool_size)
 
     def _connect(self):
-        conn = sqlite3.connect(self.db_path)
+        conn = sqlite3.connect(self.db_path, check_same_thread=False)
         conn.row_factory = sqlite3.Row  # 结果以字典形式返回
         return conn
 
