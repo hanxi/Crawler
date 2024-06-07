@@ -1,23 +1,26 @@
-from .common import pack_search_query, SEARCH_URL
+from .common import pack_search_query, SEARCH_URL, COMMON_HEADERS
 import requests
 import json
 import re
+from lib.logger import logger
 
-def request_search(keyword: str, cookie: str, page: int = 1, page_size: int = 48) -> tuple[dict, bool]:
+def request_search(keyword: str, cookie: str, page: int = 1) -> tuple[dict, bool]:
     """
     请求taobao获取搜索信息
     """
     ret = []
-    query = pack_search_query(cookie, keyword, page, page_size)
+    query = pack_search_query(cookie, keyword, page)
     url = f'{SEARCH_URL}{query}'
     headers = {'cookie': cookie}  # 未使用proxies
+    headers.update(COMMON_HEADERS)
     try:
-        print(url)
+        logger.info(f'url: {url}')
         with requests.get(url, headers=headers) as res:
             res_str = re.sub(r'^\s*mtopjsonp2\(|\)$', '', res.text)
-            print(res_str)
             res = json.loads(res_str)
             ret = res["data"]["itemsArray"]
+            ret_count = len(ret)
+            logger.info(f'ret_count: {ret_count}')
     except Exception as e:
         print(e)
         return {}, False

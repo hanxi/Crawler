@@ -79,7 +79,6 @@
 |:---:|:---:|:---:|:---:|
 | keyword | true | string | 搜索词 |
 | page | false | int | 第几页, 默认1 |
-| pagesize | false | int | 每页数量, 默认48 |
 
 - **Success Response**
 
