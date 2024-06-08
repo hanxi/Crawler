@@ -27,7 +27,7 @@ def convert_cookies_to_dict(cookies):
 
 def pack_search_query(cookie, keyword, page):
     get_cookies = convert_cookies_to_dict(cookie)
-    pdduid = get_cookies['pdd_user_id']
+    pdduid = get_cookies.get('pdd_user_id', '')
     quote_keyword = quote(keyword, 'utf-8')
     anti_content = get_anti_content(cookie)
     query = f'?pdduid={pdduid}&item_ver=lzqq&coupon_price_flag=1&source=search&search_met=qc&requery=1&list_id=xqzluqhgkl&sort=default&filter=&q={quote_keyword}&page={page}&is_new_query=1&size=50&anti_content={anti_content}'

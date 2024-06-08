@@ -44,7 +44,10 @@ def convert_cookies_to_dict(cookies):
     return cookies
 
 def get_token(cookie):
+    token = ''
     get_cookies = convert_cookies_to_dict(cookie)
-    _m_h5_tk = get_cookies['_m_h5_tk']
-    token = _m_h5_tk.split('_')[0]
+    _m_h5_tk = get_cookies.get('_m_h5_tk', '')
+    if _m_h5_tk != '':
+        token = _m_h5_tk.split('_')[0]
+
     return token
