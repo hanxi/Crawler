@@ -32,7 +32,7 @@ def request_search(keyword: str, cookie: str, page: int = 1) -> tuple[dict, bool
 
 findImgSrc = re.compile(r'<img.*data-lazy-img="(.*?)"', re.S)
 findPrice = re.compile(r'<i>(.*?)</i>', re.S)
-findInfo = re.compile(r'<div class="p-name p-name-type-2">(.*?)<em>(.*?)</em>', re.S)
+findInfo = re.compile(r'<div class="p-name p-name-type-2">.*href="(.*?)".*<em>(.*?)</em>', re.S)
 findTag = re.compile(r'<span(.*?)>(.*?)</span>', re.S)
 findStore = re.compile(r'<span class="J_im_icon"><a.*?>(.*?)</a>', re.S)
 findSupply = re.compile(r'<i class="goods-icons J-picon-tips J-picon-fix" data-idx="1" data-tips="京东自营，品质保障">(.*?)</i>', re.S)
@@ -48,6 +48,7 @@ def parse_search_html(html):
         data["imgSrc"] = imgSrc
         data["price"] = price
         info = re.findall(findInfo, item)[0]
+        data["url"] = info[0]
         tmpTag = info[1]
         tag = re.findall(findTag, tmpTag)
         if len(tag) != 0:

@@ -18,8 +18,8 @@ def search():
         if account.get('expired', 0) == 1:
             continue
         res, succ = request_search(keyword, account.get('cookie', ''), page)
-        if not succ:
-            accounts.expire(account.get('id', ''))
+        #if not succ:
+        #    accounts.expire(account.get('id', ''))
         if res == {} or not succ:
             continue
         logger.info(f'search success, keyword: {keyword}, page: {page}, res: {res}')
