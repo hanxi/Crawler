@@ -5,6 +5,7 @@ from service.bilibili.urls  import bilibili
 from service.taobao.urls import taobao
 from service.jd.urls import jd
 from service.pdd.urls import pdd
+from service.meituan.urls import meituan
 from lib.logger import logger
 import yaml
 
@@ -15,6 +16,7 @@ app.register_blueprint(bilibili, url_prefix="/bilibili")
 app.register_blueprint(taobao, url_prefix="/taobao")
 app.register_blueprint(jd, url_prefix="/jd")
 app.register_blueprint(pdd, url_prefix="/pdd")
+app.register_blueprint(meituan, url_prefix="/meituan")
 
 def init_service():
     config_file = "config/config.yaml"
